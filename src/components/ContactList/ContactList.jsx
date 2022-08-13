@@ -1,5 +1,4 @@
 import React from 'react'
-import {Component} from 'react'
 import css from './ContactList.module.css'
 import Contact from './Contact'
 import PropTypes from 'prop-types'
@@ -10,7 +9,8 @@ return (
     <ul className={css.ul}>
 {contacts.map(contact => {
 if (contact.name.toLowerCase().includes(filter.toLowerCase()) || contact.telephone.includes(filter))
-return <Contact key={contact.id} contact={contact} onDeleteContact={onDeleteContact}/>})}
+{return <Contact key={contact.id} contact={contact} onDeleteContact={onDeleteContact}/>}
+return })}
     </ul>
 )
 }
