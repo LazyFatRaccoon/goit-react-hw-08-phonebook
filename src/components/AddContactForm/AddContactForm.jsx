@@ -1,8 +1,8 @@
-import {Input, Span} from './AddContactForm.styled';
+// import {Input, Span} from './AddContactForm.styled';
 import { Component } from 'react';
 import css from './AddContactForm.module.css'
 import PropTypes from 'prop-types'
-import { FaPlus } from 'react-icons/fa'
+import { FaPlus } from "react-icons/fa"
 
 class AddContactForm extends Component {
 

@@ -2,16 +2,17 @@ import AddContactForm from './AddContactForm';
 import { Component } from 'react';
 import ContactList from './ContactList'
 import ContactFilter from './ContactFilter'
+import uniqid from 'uniqid'
 
-const shortid = require('shortid');
+// const shortid = require('shortid');
 
 class App extends Component {
   state = {
     contacts: [
-      { id: shortid.generate(), name: 'Rosie Simpson', telephone: '459-12-56' },
-      { id: shortid.generate(), name: 'Hermione Kline', telephone: '443-89-12' },
-      { id: shortid.generate(), name: 'Eden Clements', telephone: '645-17-79' },
-      { id: shortid.generate(), name: 'Annie Copeland', telephone: '227-91-26' },
+      { id: uniqid(), name: 'Rosie Simpson', telephone: '459-12-56' },
+      { id: uniqid(), name: 'Hermione Kline', telephone: '443-89-12' },
+      { id: uniqid(), name: 'Eden Clements', telephone: '645-17-79' },
+      { id: uniqid(), name: 'Annie Copeland', telephone: '227-91-26' },
     ],
     filter: '',
   };
@@ -25,7 +26,7 @@ class App extends Component {
     this.setState(prevState => ({
       contacts: [
         {
-          id: shortid.generate(),
+          id: uniqid(),
           name: contact.name,
           telephone: contact.telephone,
         },
