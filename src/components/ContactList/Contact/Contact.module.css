@@ -1,0 +1,20 @@
+.button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    
+}
+.icon {
+    transition: fill 250ms linear;
+}
+.button:hover .icon,
+.button:focus .icon{
+    fill: #8e22d6;
+}
+
+.li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 100px;
+}
