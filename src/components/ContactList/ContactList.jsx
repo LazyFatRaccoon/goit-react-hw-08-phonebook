@@ -7,10 +7,10 @@ const ContactList = ({contacts, filter, onDeleteContact}) => {
    
 return (
     <ul className={css.ul}>
-{contacts.map(contact => {
+{contacts.map(contact => { 
 if (contact.name.toLowerCase().includes(filter.toLowerCase()) || contact.telephone.includes(filter))
 {return <Contact key={contact.id} contact={contact} onDeleteContact={onDeleteContact}/>}
-return })}
+return ''})}
     </ul>
 )
 }
