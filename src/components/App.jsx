@@ -5,6 +5,7 @@ import ContactFilter from './ContactFilter'
 import uniqid from 'uniqid'
 
 // const shortid = require('shortid');
+const LS_CONTACTS = 'contacts'
 
 class App extends Component {
   state = {
@@ -16,6 +17,19 @@ class App extends Component {
     ],
     filter: '',
   };
+
+  componentDidMount() {
+    const savedContacts = localStorage.getItem(LS_CONTACTS);
+    if (savedContacts) {
+      this.setState({contacts: JSON.parse(savedContacts)})
+    }
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem(LS_CONTACTS, JSON.stringify(this.state.contacts))
+    }
+  }
 
   deleteContact = contactId => {
     this.setState(prevState => ({
