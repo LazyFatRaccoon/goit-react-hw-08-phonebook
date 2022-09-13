@@ -3,16 +3,18 @@ import { Component } from 'react';
 import ContactList from './ContactList'
 import ContactFilter from './ContactFilter'
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import uniqid from 'uniqid';
+
 
 const LS_CONTACTS = 'contacts'
 
 class App extends Component {
   state = {
     contacts: [
-      { name: 'Rosie Simpson', telephone: '459-12-56' },
-      { name: 'Hermione Kline', telephone: '443-89-12' },
-      { name: 'Eden Clements', telephone: '645-17-79' },
-      { name: 'Annie Copeland', telephone: '227-91-26' },
+      { id: uniqid(), name: 'Rosie Simpson', telephone: '459-12-56' },
+      { id: uniqid(), name: 'Hermione Kline', telephone: '443-89-12' },
+      { id: uniqid(), name: 'Eden Clements', telephone: '645-17-79' },
+      { id: uniqid(), name: 'Annie Copeland', telephone: '227-91-26' },
     ],
     filter: '',
   };
@@ -33,7 +35,7 @@ class App extends Component {
   deleteContact = contactId => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(
-        contact => contact.name !== contactId
+        contact => contact.id !== contactId
       ),
     }));
   };
@@ -50,6 +52,7 @@ class App extends Component {
     this.setState(prevState => ({
       contacts: [
         {
+          id: uniqid(),
           name: contact.name,
           telephone: contact.telephone,
         },
