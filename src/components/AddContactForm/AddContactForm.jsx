@@ -1,37 +1,47 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import css from './AddContactForm.module.css';
 import PropTypes from 'prop-types';
 import { FaPlus } from 'react-icons/fa';
 
-class AddContactForm extends Component {
-  state = {
-    name: '',
-    telephone: '',
-  };
-  handleChange = e => {
-    const { name, value } = e.currentTarget;
-    this.setState({ [name]: value });
+function AddContactForm({onSubmit}) {
+
+  const [name, setName] = useState('');
+  const [telephone, setTelephone] = useState('')
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+    switch(name) {
+      case 'name':
+        setName(value)
+        break;
+      case 'telephone':
+        setTelephone(value)
+        break;
+      default:
+        return;
+    }
   };
 
-  resetForm = () => {
-    this.setState({ name: '', telephone: '' });
+  const resetForm = () => {
+    setName('')
+    setTelephone('')
   };
 
-  handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state);
-    this.resetForm();
+    onSubmit({name, telephone});
+    resetForm();
   };
 
-  render() {
+  
     return (
-      <form className={css.form} onSubmit={this.handleSubmit}>
+      <form className={css.form} onSubmit={handleSubmit}>
         <div>
           <div className={css.div}>
             <input
-              value={this.state.name}
+              value={name}
               className={css.input}
-              onChange={this.handleChange}
+              onChange={handleChange}
               id="name"
               type="text"
               name="name"
@@ -46,9 +56,9 @@ class AddContactForm extends Component {
           </div>
           <div className={css.div}>
             <input
-              value={this.state.telephone}
+              value={telephone}
               className={css.input}
-              onChange={this.handleChange}
+              onChange={handleChange}
               type="tel"
               id="telephone"
               name="telephone"
@@ -69,7 +79,7 @@ class AddContactForm extends Component {
       </form>
     );
   }
-}
+
 
 AddContactForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
