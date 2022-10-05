@@ -7,8 +7,6 @@ import uniqid from 'uniqid';
 import {useSelector, useDispatch} from 'react-redux';
 import { addContact, deleteContact, setFilter } from 'redux/store';
 
-
-
 //const LS_CONTACTS = 'contacts'
 // const data = [
 //   { id: uniqid(), name: 'Rosie Simpson', telephone: '459-12-56' },
