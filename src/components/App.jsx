@@ -4,46 +4,51 @@ import ContactList from './ContactList'
 import ContactFilter from './ContactFilter'
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import uniqid from 'uniqid';
+import {useSelector, useDispatch} from 'react-redux';
+import { addContact, deleteContact, setFilter } from 'redux/store';
 
 
-const LS_CONTACTS = 'contacts'
-const data = [
-  { id: uniqid(), name: 'Rosie Simpson', telephone: '459-12-56' },
-  { id: uniqid(), name: 'Hermione Kline', telephone: '443-89-12' },
-  { id: uniqid(), name: 'Eden Clements', telephone: '645-17-79' },
-  { id: uniqid(), name: 'Annie Copeland', telephone: '227-91-26' },
-]
+
+//const LS_CONTACTS = 'contacts'
+// const data = [
+//   { id: uniqid(), name: 'Rosie Simpson', telephone: '459-12-56' },
+//   { id: uniqid(), name: 'Hermione Kline', telephone: '443-89-12' },
+//   { id: uniqid(), name: 'Eden Clements', telephone: '645-17-79' },
+//   { id: uniqid(), name: 'Annie Copeland', telephone: '227-91-26' },
+// ]
 
 export default function App() {
-  
-  const [contacts, setContacts] = useState(()=>{
+  const dispatch = useDispatch();
+  const contacts = useSelector(state=>state.contacts.contacts);
+  console.log(contacts)
+  const filter = useSelector(state=>state.filter);
+  console.log(filter)
+
+  // const [contacts, setContacts] = useState(()=>{
     
-      const savedContacts = localStorage.getItem(LS_CONTACTS);
-      let initialState
-      if (savedContacts) {
-        initialState = (JSON.parse(savedContacts))
-      } else initialState = data
-      return initialState
+  //     const savedContacts = localStorage.getItem(LS_CONTACTS);
+  //     let initialState
+  //     if (savedContacts) {
+  //       initialState = (JSON.parse(savedContacts))
+  //     } else initialState = data
+  //     return initialState
       
-  })
-  const [filter, setFilter] = useState('')
+  // })
+  // const [filter, setFilter] = useState('')
 
   
 
-  useEffect(()=>{
-    localStorage.setItem(LS_CONTACTS, JSON.stringify(contacts))
-  },[contacts])
+  // useEffect(()=>{
+  //   localStorage.setItem(LS_CONTACTS, JSON.stringify(contacts))
+  // },[contacts])
 
+  
 
-  const deleteContact = contactId => {
-    setContacts(prevState => (
-      prevState.filter(
-        contact => contact.id !== contactId
-      )
-    ));
+  const handleDeleteContact = contactId => {
+    dispatch(deleteContact({id: contactId}));
   };
 
-  const addContact = contact => {
+  const handleAddContact = contact => {
     if (
       contacts.some(
         element => element.name.toLowerCase() === contact.name.toLowerCase()
@@ -52,21 +57,20 @@ export default function App() {
       Notify.warning('we already got this contact');
       return;
     }
-    setContacts(prevState => (
-      [
+    dispatch(addContact(
         {
           id: uniqid(),
           name: contact.name,
           telephone: contact.telephone,
         },
-        ...prevState,
-      ]
+       
     ));
   };
 
   const filterContacts = filter => {
-    setFilter(filter)
+    dispatch(setFilter({filter: filter}))
   }
+
 
   const filteredContactsList = () => {
     const filteredList = contacts.filter(
@@ -92,7 +96,7 @@ export default function App() {
         }}
       >
         <h1 style={{ margin: '0px' }}>Phonebook</h1>
-        <AddContactForm onSubmit={addContact} />
+        <AddContactForm onSubmit={handleAddContact} />
         <ContactFilter
           filter={filter}
           onFilterChange={filterContacts}
@@ -100,7 +104,7 @@ export default function App() {
         <h2 style={{ margin: '0px' }}>Contact list</h2>
         <ContactList
           contacts={filteredContactsList()}
-          onDeleteContact={deleteContact}
+          onDeleteContact={handleDeleteContact}
         />
       </div>
     );
