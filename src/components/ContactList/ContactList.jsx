@@ -1,33 +1,37 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import css from './ContactList.module.css';
 import Contact from './Contact';
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchContacts } from 'redux/contacts/contactsOperations';
 
-const ContactList = ({ contacts, onDeleteContact }) => {
+const ContactList = () => {
+  const contacts = useSelector(state => state.contacts.items);
+  const isLoading = useSelector(state => state.contacts.isLoading);
+  const error = useSelector(state => state.contacts.error);
+  const filter = useSelector(state => state.filter);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+     dispatch(fetchContacts());
+  }, [dispatch]);
+
+  
+  const filteredList = () => contacts.filter(
+    contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase()) ||
+      contact.phone.includes(filter)
+  );
+
   return (
     <ul className={css.ul}>
-      {contacts.map(contact => {
-        return (
-          <Contact
-            key={contact.id}
-            contact={contact}
-            onDeleteContact={onDeleteContact}
-          />
-        );
+      {isLoading && <b>Loading...</b>}
+      {error && <b>{error}</b>}
+      {contacts.length > 0 && filteredList().map(contact => {
+        return <Contact key={contact.id} contact={contact} />;
       })}
     </ul>
   );
-};
-
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.exact({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      telephone: PropTypes.string.isRequired,
-    })
-  ),
-  onDeleteContact: PropTypes.func.isRequired,
 };
 
 export default ContactList;
