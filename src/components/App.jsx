@@ -21,33 +21,40 @@ export default function App() {
   }, [dispatch]);
 
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const isRefreshing = useSelector(authSelectors.getIsRefreshing);
   console.log(isLoggedIn);
 
   return (
-    <div className={style.app}>
-      <AppBar />
+    !isRefreshing && (
+      <div className={style.app}>
+        <AppBar />
 
-      <Routes>
-        <Route path="/" element={<HomeView />} exact />
-        <Route
-          path="/register"
-          element={
-            isLoggedIn ? <Navigate replace to="/contacts" /> : <RegisterView />
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            isLoggedIn ? <Navigate replace to="/contacts" /> : <LoginView />
-          }
-        />
-        <Route
-          path="/contacts"
-          element={
-            isLoggedIn ? <ContactsView /> : <Navigate replace to="/login" />
-          }
-        />
-      </Routes>
-    </div>
+        <Routes>
+          <Route path="/" element={<HomeView />} exact />
+          <Route
+            path="/register"
+            element={
+              isLoggedIn ? (
+                <Navigate replace to="/contacts" />
+              ) : (
+                <RegisterView />
+              )
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              isLoggedIn ? <Navigate replace to="/contacts" /> : <LoginView />
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              isLoggedIn ? <ContactsView /> : <Navigate replace to="/login" />
+            }
+          />
+        </Routes>
+      </div>
+    )
   );
 }

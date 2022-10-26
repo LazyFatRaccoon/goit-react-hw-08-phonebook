@@ -38,6 +38,12 @@ const authSlice = createSlice({
       state.token = initialState.token;
       state.isError = null;
     },
+    [authOperations.fetchCurrentUser.pending](state) {
+      state.isRefreshing = true;
+    },
+    [authOperations.fetchCurrentUser.rejected](state) {
+      state.isRefreshing = initialState.isRefreshing;
+    },
     [authOperations.fetchCurrentUser.fulfilled](state, { payload }) {
       state.user = payload;
       state.isLoggedIn = true;
