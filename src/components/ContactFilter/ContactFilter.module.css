@@ -16,3 +16,31 @@
 .input:focus + .icon {
     fill: #8e22d6;
 }
+
+@media screen and (max-width: 768px) {
+    .div {
+        width: 400px;
+    }
+    .icon {
+        width:30px; 
+    }
+    .input {
+        
+        font-size: 20px;
+    }
+    
+  }
+
+  @media screen and (max-width: 480px) {
+    .div {
+        width: 300px;
+    }
+    .icon {
+        width:25px; 
+    }
+    .input {
+        
+        font-size: 15px;
+    }
+    
+  }

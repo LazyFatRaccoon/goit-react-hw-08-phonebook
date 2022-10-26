@@ -56,3 +56,48 @@
     display: flex;
     align-items: center;
 }
+
+
+@media screen and (max-width: 768px) {
+    .div {
+        width: 400px;
+    }
+    .label {
+        font-size: 20px;
+        top: 0;
+    }
+    .icon {
+        width: 30px;
+    }
+    .input {
+        width: 300px;
+        font-size: 20px;
+    }
+    .input:focus + .label,
+    .input:not(:placeholder-shown) + .label {
+        top: -25px;
+        color: red;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .div {
+        width: 260px;
+    }
+    .label {
+        font-size: 15px;
+        top: -5px;
+    }
+    .icon {
+        width: 25px;
+    }
+    .input {
+        width: 240px;
+        font-size: 15px;
+    }
+    .input:focus + .label,
+    .input:not(:placeholder-shown) + .label {
+        top: -25px;
+        color: red;
+    }
+  }

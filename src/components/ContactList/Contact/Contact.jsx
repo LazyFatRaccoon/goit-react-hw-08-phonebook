@@ -11,7 +11,7 @@ const Contact = ({ contact }) => {
   return (
     <li className={css.li}>
       <span>
-        {contact.name} {contact.phone}{' '}
+        {contact.name} {contact.number}{' '}
       </span>
       <button
         className={css.button}
@@ -28,7 +28,7 @@ Contact.propTypes = {
   contact: PropTypes.exact({
     createdAt: PropTypes.string,
     name: PropTypes.string.isRequired,
-    phone: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
   }).isRequired,
 };

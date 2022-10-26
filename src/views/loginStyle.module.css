@@ -1,0 +1,110 @@
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 75%;
+    max-width: 500px;
+    min-width: 300px;
+
+    font-size: 2rem;
+    font-family: Roboto;
+    
+}
+
+.header {
+    text-align: center;
+    font-size: 3rem;
+    padding: 0;
+    margin: 0;
+    color:#319795
+
+}
+
+.form-control {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    
+}
+
+
+
+.field {
+    
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    border: solid 1px #319795;
+    border-radius: 6px;
+    outline: solid 1px #319795;
+    transition: all 0.3s linear;
+}
+.normalField {
+    border: solid 1px #319795;
+    outline: solid 1px #319795;
+}
+.normalField:focus,
+.normalField:hover {
+    outline: solid 2px #319795;   
+}
+.errorField {
+    border: solid 1px red;
+    outline: solid 1px red;
+}
+.errorField:focus,
+.errorField:hover {
+    outline: solid 2px red;  
+}
+
+
+.error {
+    min-height: 1rem;
+    max-height: 1rem;
+    font-size: 1rem;
+    color: red;
+}
+
+.submitBtn {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 2rem;
+    background-color: #319795;
+    color: white;
+    border: solid 1px transparent;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    min-width: 15rem;
+    max-height: 4rem;
+    margin-top: 2rem;
+    transition: transform 0.5s ease;
+}
+
+.submitBtn:hover,
+.submitBtn:focus {
+    transform: scale(1.1);
+}
+
+.spinner {
+    animation: spin infinite 2s ease;
+
+    /*You can increase or decrease the timer (5s) to 
+     increase or decrease the speed of the spinner*/
+  }
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.errorMsg {
+    min-height: 1rem;
+    max-height: 1rem;
+    font-size: 2rem;
+    color: red;
+    text-align: center;
+}

@@ -1,27 +1,53 @@
-import AddContactForm from './AddContactForm';
-import ContactList from './ContactList';
-import ContactFilter from './ContactFilter';
+import ContactsView from 'views/ContactsView';
+import HomeView from 'views/HomeView';
+import LoginView from 'views/LoginView';
+import RegisterView from 'views/RegisterView';
+//import PrivateRoute from './AppBar/PrivateRoute';
+
+import AppBar from './AppBar';
+
+import { useEffect } from 'react';
+import { Routes, Route, Navigate } from 'react-router';
+
+import { authOperations, authSelectors } from 'redux/auth';
+import { useDispatch, useSelector } from 'react-redux';
+
+import style from './appStyle.module.scss';
 
 export default function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
+
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  console.log(isLoggedIn);
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101',
-        padding: '0px 50px',
-        gap: '20px',
-      }}
-    >
-      <h1 style={{ margin: '0px' }}>Phonebook</h1>
-      <AddContactForm/>
-      <ContactFilter/>
-      <h2 style={{ margin: '0px' }}>Contact list</h2>
-      <ContactList/>
+    <div className={style.app}>
+      <AppBar />
+
+      <Routes>
+        <Route path="/" element={<HomeView />} exact />
+        <Route
+          path="/register"
+          element={
+            isLoggedIn ? <Navigate replace to="/contacts" /> : <RegisterView />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            isLoggedIn ? <Navigate replace to="/contacts" /> : <LoginView />
+          }
+        />
+        <Route
+          path="/contacts"
+          element={
+            isLoggedIn ? <ContactsView /> : <Navigate replace to="/login" />
+          }
+        />
+      </Routes>
     </div>
   );
 }

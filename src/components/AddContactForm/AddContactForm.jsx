@@ -2,7 +2,7 @@ import { useState } from 'react';
 import css from './AddContactForm.module.css';
 import { FaPlus } from 'react-icons/fa';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import uniqid from 'uniqid';
+//import uniqid from 'uniqid';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContact } from 'redux/contacts/contactsOperations';
 
@@ -24,9 +24,8 @@ function AddContactForm() {
     }
     dispatch(
       addContact({
-        id: uniqid(),
         name: contact.name,
-        phone: contact.phone,
+        number: contact.phone,
       })
     );
   };
