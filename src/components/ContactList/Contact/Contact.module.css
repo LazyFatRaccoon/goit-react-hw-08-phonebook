@@ -5,6 +5,7 @@
     
 }
 .icon {
+    fill: #316697;
     transition: fill 250ms linear;
 }
 .button:hover .icon,

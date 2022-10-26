@@ -1,7 +1,7 @@
 .div {
     display: block;
     margin-top: 35px;
-    width: 600px;
+    width: 400px;
     
 }
 .input {
@@ -10,8 +10,27 @@
     position: absolute;
     font-size: 30px;
     margin-bottom: 50px;
+    
    
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #319795;  
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;  
+  transition: background-color 5000s ease-in-out 0s; 
+}
+
+input, select, textarea {
+    color: #319795;
+    }
 
 .input:focus {
     outline: none;
@@ -20,7 +39,7 @@
 .input:focus + .label,
 .input:not(:placeholder-shown) + .label {
     top: -50px;
-    color: red;
+    color: #8e22d6;
 }
 
 .button {
@@ -32,6 +51,7 @@
 }
 
 .icon {
+    fill: #316697;
     transition: fill,transform 250ms linear;
 }
 
@@ -48,7 +68,7 @@
     position: relative;
     font-size: 30px;
     top: -10px;
-    color: black;
+    color: #3197956d;
     z-index: 1;
 }
 
@@ -60,7 +80,7 @@
 
 @media screen and (max-width: 768px) {
     .div {
-        width: 400px;
+        width: 340px;
     }
     .label {
         font-size: 20px;

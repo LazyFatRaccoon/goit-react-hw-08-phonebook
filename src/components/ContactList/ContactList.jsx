@@ -4,13 +4,11 @@ import Contact from './Contact';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchContacts } from 'redux/contacts/contactsOperations';
 
+import { Audio } from 'react-loader-spinner';
+
 const ContactList = () => {
-  const contacts = useSelector(
-    state => state.contacts.items
-  );
-  const isLoading = useSelector(
-    state => state.contacts.isLoading
-  );
+  const contacts = useSelector(state => state.contacts.items);
+  const isLoading = useSelector(state => state.contacts.isLoading);
   const error = useSelector(state => state.contacts.error);
   const filter = useSelector(state => state.filter);
   const token = useSelector(state => state.auth.token);
@@ -24,21 +22,17 @@ const ContactList = () => {
   const filteredList = () =>
     contacts.filter(
       contact =>
-        contact.name
-          .toLowerCase()
-          .includes(filter.toLowerCase()) ||
+        contact.name.toLowerCase().includes(filter.toLowerCase()) ||
         contact.number.includes(filter)
     );
 
   return (
     <ul className={css.ul}>
-      {isLoading && <b>Loading...</b>}
+      {isLoading && <Audio width="100%" color="#8e22d6" />}
       {error && <b>{error}</b>}
       {contacts.length > 0 &&
         filteredList().map(contact => {
-          return (
-            <Contact key={contact.id} contact={contact} />
-          );
+          return <Contact key={contact.id} contact={contact} />;
         })}
     </ul>
   );

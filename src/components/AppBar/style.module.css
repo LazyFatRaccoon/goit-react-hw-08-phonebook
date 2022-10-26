@@ -1,19 +1,25 @@
 .navLink {
     text-decoration: none;
     color: white;
+    transition: transform 0.5s ease;
+}
+
+.navLink:not(.disabled):hover,
+.navLink:not(.disabled):focus {
+    transform: scale(1.1);
 }
 
 .active {
     color: #e0cb0b;
-    padding: 0.5rem 1rem;
+    
 }
 
 .navBar {
     font-size: 2rem;
     width: 100%;
     display: flex;
-    gap: 5rem;
-    justify-content: center;
+    
+    justify-content:space-between;
     padding: 1rem;
     margin: 1rem;
     background-color: #316697;
@@ -32,6 +38,12 @@
     border: solid 1px white;
     border-radius: 4px;
     cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+.logout:hover,
+.logout:focus {
+    transform: scale(1.1);
 }
 
 .container {
@@ -81,4 +93,10 @@
     .active{
         padding: 0;
     }
+  }
+
+  .disabled { 
+    cursor: default;
+    color: gray;
+
   }
