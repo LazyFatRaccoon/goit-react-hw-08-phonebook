@@ -1,7 +1,9 @@
-import ContactsView from 'views/ContactsView';
-import HomeView from 'views/HomeView';
-import LoginView from 'views/LoginView';
-import RegisterView from 'views/RegisterView';
+import ContactsView from 'views/ContactsView/ContactsView';
+import HomeView from 'views/HomeView/HomeView';
+import LoginView from 'views/Login&RegisterView/LoginView';
+import RegisterView from 'views/Login&RegisterView/RegisterView';
+import NotFoundView from 'views/404/404view';
+
 //import PrivateRoute from './AppBar/PrivateRoute';
 
 import AppBar from './AppBar';
@@ -53,6 +55,7 @@ export default function App() {
               isLoggedIn ? <ContactsView /> : <Navigate replace to="/login" />
             }
           />
+          <Route path="*" element={<NotFoundView />} />
         </Routes>
       </div>
     )
