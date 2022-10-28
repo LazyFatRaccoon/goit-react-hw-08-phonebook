@@ -28,6 +28,7 @@ function AddContactForm() {
         number: contact.phone,
       })
     );
+    resetForm();
   };
 
   const handleChange = e => {
@@ -52,7 +53,6 @@ function AddContactForm() {
   const handleSubmit = e => {
     e.preventDefault();
     handleAddContact({ name, phone });
-    resetForm();
   };
 
   return (

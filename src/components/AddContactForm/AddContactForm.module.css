@@ -96,7 +96,7 @@ input, select, textarea {
     .input:focus + .label,
     .input:not(:placeholder-shown) + .label {
         top: -25px;
-        color: red;
+        color: 8e22d6;
     }
   }
 
@@ -118,6 +118,6 @@ input, select, textarea {
     .input:focus + .label,
     .input:not(:placeholder-shown) + .label {
         top: -25px;
-        color: red;
+        color: 8e22d6;
     }
   }
